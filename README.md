@@ -26,15 +26,15 @@ The following resources will be deployed:
 * Lambda functions
 * API Gateway REST API
 
-## Swith CDN
-You can specify CDN using the configuration aliases (primary/secondary.)
-A `curl` command like the following will be printed:
+## Switch CDNs
+You can switch CDN via the configuration aliases (primary/secondary.)
+As the deployment completes, a `curl` command like the following will be printed:
 ```
-$ curl -X POST -H "Content-Type: application/json" -d '{ "playerParams": {"cdn": "primary"}}' https://{Origin ID}.mediatailor.{Region}.amazonaws.com/v1/session/{Customer ID}/{Config Name}/{MediaPackage endpoint ID}/index.m3u8
+$ curl -X POST -H "Content-Type: application/json" -d '{ "playerParams": {"cdn": "primary"}}' https://{Origin ID}.mediatailor.{Region}.amazonaws.com/v1/session/{Customer ID}/{Config Name}/{MediaPackage HLS endpoint ID}/index.m3u8
 
-{"manifestUrl":"/v1/master/{Customer ID}/{Config Name}/{MediaPackage endpoint ID}/index.m3u8?aws.sessionId={Session ID}","trackingUrl":"/v1/tracking/{Customer ID}/{Config Name}/{Session ID}"}
+{"manifestUrl":"/v1/master/{Customer ID}/{Config Name}/{MediaPackage HLS endpoint ID}/index.m3u8?aws.sessionId={Session ID}","trackingUrl":"/v1/tracking/{Customer ID}/{Config Name}/{Session ID}"}
 ```
-You can use the command to get the manitest/tracking URLs.
+You can just run the command to get the manitest/tracking URLs.
 
 ## Cleanup
 ```
