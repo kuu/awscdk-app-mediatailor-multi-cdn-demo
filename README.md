@@ -20,11 +20,11 @@ The following resources will be deployed:
 * MediaLive channel
 * MediaPackage channel and endpoints
 * MediaTailor configuration
-* S3 bucket
 * CloudFront distributions
+* S3 bucket (for storing MP4 files)
+* API Gateway REST API
 * EventBridge rule
 * Lambda functions
-* API Gateway REST API
 
 ## Switch CDNs
 You can switch CDN via the configuration aliases (primary/secondary.)
