@@ -825,7 +825,7 @@ exports[`Snapshot 1`] = `
               {
                 "Ref": "AWS::Region",
               },
-              "","parameters":{"Name":"f5cc3ec7-0789-4ffe-94d7-06e4d548ac16","VideoContentSourceUrl":"",
+              "","parameters":{"Name":"6572da88-de08-4293-b083-4508499cf392","VideoContentSourceUrl":"",
               {
                 "Fn::GetAtt": [
                   "LiveChannelFromMp4MediaPackageV1MediaPackageV1HlsEndpoint735161B2",
@@ -869,7 +869,7 @@ exports[`Snapshot 1`] = `
                   "DomainName",
                 ],
               },
-              ""}}},"physicalResourceId":{"id":"27b8b448-c38e-4322-9234-32168ba5a94d"}}",
+              ""}}},"physicalResourceId":{"id":"9ee9621d-bc38-4b90-8cbe-8ca916ba818a"}}",
             ],
           ],
         },
@@ -1401,7 +1401,7 @@ exports[`Snapshot 1`] = `
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                    "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
                     "Arn",
                   ],
                 },
@@ -1411,7 +1411,7 @@ exports[`Snapshot 1`] = `
                     [
                       {
                         "Fn::GetAtt": [
-                          "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                          "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
                           "Arn",
                         ],
                       },
@@ -1450,7 +1450,7 @@ exports[`Snapshot 1`] = `
             [
               "Lambda function for auto-deleting objects in ",
               {
-                "Ref": "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                "Ref": "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
               },
               " S3 bucket.",
             ],
@@ -1499,29 +1499,10 @@ exports[`Snapshot 1`] = `
       },
       "Type": "AWS::IAM::Role",
     },
-    "FilePublisher4d93dc5ac8854e288c57014a027b0d0fAutoDeleteObjectsCustomResourceAFE24665": {
-      "DeletionPolicy": "Delete",
-      "DependsOn": [
-        "FilePublisher4d93dc5ac8854e288c57014a027b0d0fPolicy0E253B4B",
-      ],
-      "Properties": {
-        "BucketName": {
-          "Ref": "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
-        },
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
-            "Arn",
-          ],
-        },
-      },
-      "Type": "Custom::S3AutoDeleteObjects",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C": {
+    "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216": {
       "DeletionPolicy": "Delete",
       "Properties": {
-        "BucketName": "4d93dc5a-c885-4e28-8c57-014a027b0d0f",
+        "BucketName": "73faa5ba-984e-4c58-88b5-a56b93dfa2ce",
         "Tags": [
           {
             "Key": "aws-cdk:auto-delete-objects",
@@ -1536,10 +1517,29 @@ exports[`Snapshot 1`] = `
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Delete",
     },
-    "FilePublisher4d93dc5ac8854e288c57014a027b0d0fPolicy0E253B4B": {
+    "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ceAutoDeleteObjectsCustomResourceB848820C": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "FilePublisher73faa5ba984e4c5888b5a56b93dfa2cePolicyC2C90832",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "FilePublisher73faa5ba984e4c5888b5a56b93dfa2cePolicyC2C90832": {
       "Properties": {
         "Bucket": {
-          "Ref": "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+          "Ref": "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
         },
         "PolicyDocument": {
           "Statement": [
@@ -1562,7 +1562,7 @@ exports[`Snapshot 1`] = `
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                    "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
                     "Arn",
                   ],
                 },
@@ -1572,7 +1572,7 @@ exports[`Snapshot 1`] = `
                     [
                       {
                         "Fn::GetAtt": [
-                          "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                          "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
                           "Arn",
                         ],
                       },
@@ -1599,7 +1599,7 @@ exports[`Snapshot 1`] = `
                   [
                     {
                       "Fn::GetAtt": [
-                        "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                        "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
                         "Arn",
                       ],
                     },
@@ -1630,7 +1630,7 @@ exports[`Snapshot 1`] = `
       "DeletionPolicy": "Delete",
       "Properties": {
         "DestinationBucketName": {
-          "Ref": "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+          "Ref": "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
         },
         "Prune": true,
         "ServiceToken": {
@@ -1677,7 +1677,7 @@ exports[`Snapshot 1`] = `
             {
               "DomainName": {
                 "Fn::GetAtt": [
-                  "FilePublisher4d93dc5ac8854e288c57014a027b0d0fDEB7088C",
+                  "FilePublisher73faa5ba984e4c5888b5a56b93dfa2ce0A7D1216",
                   "RegionalDomainName",
                 ],
               },
@@ -1873,7 +1873,7 @@ exports[`Snapshot 1`] = `
         },
         "InputAttachments": [
           {
-            "InputAttachmentName": "a4f03cbb-7613-484e-ba9f-b911b34fa7a5",
+            "InputAttachmentName": "65ed0c3a-e2fc-4b19-8e9d-4e11e88ee6af",
             "InputId": {
               "Ref": "LiveChannelFromMp4MediaLiveCfnInput0330A3853",
             },
@@ -1882,7 +1882,7 @@ exports[`Snapshot 1`] = `
             },
           },
         ],
-        "Name": "fd88ba76-41ff-4074-8acd-8ab207aac9aa-Channel",
+        "Name": "08b9c987-5ffa-4f48-8266-a66c2b61bde8-Channel",
         "RoleArn": {
           "Fn::GetAtt": [
             "LiveChannelFromMp4MediaLiveIamRoleChannel570F95D7",
@@ -1894,7 +1894,7 @@ exports[`Snapshot 1`] = `
     },
     "LiveChannelFromMp4MediaLiveCfnInput0330A3853": {
       "Properties": {
-        "Name": "a4f03cbb-7613-484e-ba9f-b911b34fa7a5",
+        "Name": "65ed0c3a-e2fc-4b19-8e9d-4e11e88ee6af",
         "Sources": [
           {
             "Url": {
@@ -1958,7 +1958,7 @@ exports[`Snapshot 1`] = `
     "LiveChannelFromMp4MediaPackageV1MediaPackageV1Channel8413A6B2": {
       "Properties": {
         "Description": "MediaPackage channel for testing",
-        "Id": "0508c3e6-2382-499f-83b8-19e49d6b3469",
+        "Id": "829bc10d-8cfa-467e-80a3-2c6aef0ee9fd",
       },
       "Type": "AWS::MediaPackage::Channel",
     },
@@ -1988,7 +1988,7 @@ exports[`Snapshot 1`] = `
           "SegmentDurationSeconds": 6,
         },
         "Description": "MediaPackage CMAF endpoint for testing",
-        "Id": "71fd93f8-fbbb-4c2d-bc09-42a91574597c",
+        "Id": "62f10f18-7b87-466c-ac4c-5f09bdd7c67e",
         "StartoverWindowSeconds": 300,
       },
       "Type": "AWS::MediaPackage::OriginEndpoint",
@@ -2015,7 +2015,7 @@ exports[`Snapshot 1`] = `
           "SegmentDurationSeconds": 6,
         },
         "Description": "MediaPackage DASH endpoint for testing",
-        "Id": "5ebc68a0-3d3e-4aed-9052-5f1038a89e64",
+        "Id": "7ed22f19-76a5-4662-8695-0e748cc99cc6",
         "StartoverWindowSeconds": 300,
       },
       "Type": "AWS::MediaPackage::OriginEndpoint",
@@ -2042,7 +2042,7 @@ exports[`Snapshot 1`] = `
           "SegmentDurationSeconds": 6,
           "UseAudioRenditionGroup": false,
         },
-        "Id": "8dc3decf-41a6-4e9e-8ceb-8a57b7ab1e23",
+        "Id": "062042f6-8e81-4cd3-9f3b-53f49c4a1f4c",
         "StartoverWindowSeconds": 300,
       },
       "Type": "AWS::MediaPackage::OriginEndpoint",
@@ -2053,7 +2053,7 @@ exports[`Snapshot 1`] = `
           "Ref": "LiveChannelFromMp4MediaPackageV1MediaPackageV1Channel8413A6B2",
         },
         "Description": "MediaPackage MSS endpoint for testing",
-        "Id": "6b32f4f0-8c41-424a-8f58-addb79b4760d",
+        "Id": "ec32bf94-5f94-447d-8342-9bd7f9f04a85",
         "MssPackage": {
           "ManifestWindowSeconds": 60,
           "SegmentDurationSeconds": 6,
@@ -2076,7 +2076,7 @@ exports[`Snapshot 1`] = `
               {
                 "Ref": "LiveChannelFromMp4MediaLiveCfnChannelChannel2738FC17",
               },
-              ""},"physicalResourceId":{"id":"1bd318cc-8b31-4922-b175-9e683943da9a"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
+              ""},"physicalResourceId":{"id":"a9697205-abb5-42a1-b40a-7f3c86014e5e"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
             ],
           ],
         },
@@ -2088,7 +2088,7 @@ exports[`Snapshot 1`] = `
               {
                 "Ref": "LiveChannelFromMp4MediaLiveCfnChannelChannel2738FC17",
               },
-              ""},"physicalResourceId":{"id":"82a4b09a-330e-4a6e-979c-82ecc3ae4782"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
+              ""},"physicalResourceId":{"id":"d613ac7e-301f-4805-baf6-b259df5e292b"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
             ],
           ],
         },
@@ -2243,7 +2243,7 @@ exports[`Snapshot 1`] = `
           ],
         },
         "LivePreRollConfiguration": {},
-        "Name": "f5cc3ec7-0789-4ffe-94d7-06e4d548ac16",
+        "Name": "6572da88-de08-4293-b083-4508499cf392",
         "SlateAdUrl": {
           "Fn::Join": [
             "",
