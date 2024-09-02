@@ -825,7 +825,7 @@ exports[`Snapshot 1`] = `
               {
                 "Ref": "AWS::Region",
               },
-              "","parameters":{"Name":"34e1518d-0471-4299-ab45-5147dc0dcdc8","VideoContentSourceUrl":"",
+              "","parameters":{"Name":"6b866b32-228a-423f-9894-8c138cffc93e","VideoContentSourceUrl":"",
               {
                 "Fn::GetAtt": [
                   "LiveChannelFromMp4MediaPackageV1MediaPackageV1HlsEndpoint735161B2",
@@ -869,7 +869,7 @@ exports[`Snapshot 1`] = `
                   "DomainName",
                 ],
               },
-              ""}}},"physicalResourceId":{"id":"f6b246a3-03b8-44a7-897c-b45a5bc478a7"}}",
+              ""}}},"physicalResourceId":{"id":"e49b1bac-1aff-49bf-b3d4-2c563c63e484"}}",
             ],
           ],
         },
@@ -1401,7 +1401,7 @@ exports[`Snapshot 1`] = `
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
+                    "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
                     "Arn",
                   ],
                 },
@@ -1411,7 +1411,7 @@ exports[`Snapshot 1`] = `
                     [
                       {
                         "Fn::GetAtt": [
-                          "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
+                          "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
                           "Arn",
                         ],
                       },
@@ -1450,7 +1450,7 @@ exports[`Snapshot 1`] = `
             [
               "Lambda function for auto-deleting objects in ",
               {
-                "Ref": "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
+                "Ref": "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
               },
               " S3 bucket.",
             ],
@@ -1499,6 +1499,121 @@ exports[`Snapshot 1`] = `
       },
       "Type": "AWS::IAM::Role",
     },
+    "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketName": "00d9879b-4e9f-460d-8e4b-606a901915da",
+        "Tags": [
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+          {
+            "Key": "aws-cdk:cr-owned:fc2f7067",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "FilePublisher00d9879b4e9f460d8e4b606a901915daAutoDeleteObjectsCustomResource6697B660": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "FilePublisher00d9879b4e9f460d8e4b606a901915daPolicyD168F861",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "FilePublisher00d9879b4e9f460d8e4b606a901915daPolicyD168F861": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
+                    "FilePublisherOAI87FC8EA5",
+                    "S3CanonicalUserId",
+                  ],
+                },
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
     "FilePublisherDeployFilesAwsCliLayerEC320A13": {
       "Properties": {
         "Content": {
@@ -1515,7 +1630,7 @@ exports[`Snapshot 1`] = `
       "DeletionPolicy": "Delete",
       "Properties": {
         "DestinationBucketName": {
-          "Ref": "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
+          "Ref": "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
         },
         "Prune": true,
         "ServiceToken": {
@@ -1562,7 +1677,7 @@ exports[`Snapshot 1`] = `
             {
               "DomainName": {
                 "Fn::GetAtt": [
-                  "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
+                  "FilePublisher00d9879b4e9f460d8e4b606a901915da9540155B",
                   "RegionalDomainName",
                 ],
               },
@@ -1593,121 +1708,6 @@ exports[`Snapshot 1`] = `
         },
       },
       "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
-    },
-    "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2": {
-      "DeletionPolicy": "Delete",
-      "Properties": {
-        "BucketName": "d9b7c06d-a839-4be7-81b7-4510191a4d7e",
-        "Tags": [
-          {
-            "Key": "aws-cdk:auto-delete-objects",
-            "Value": "true",
-          },
-          {
-            "Key": "aws-cdk:cr-owned:fc2f7067",
-            "Value": "true",
-          },
-        ],
-      },
-      "Type": "AWS::S3::Bucket",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "FilePublisherd9b7c06da8394be781b74510191a4d7eAutoDeleteObjectsCustomResourceBE87D688": {
-      "DeletionPolicy": "Delete",
-      "DependsOn": [
-        "FilePublisherd9b7c06da8394be781b74510191a4d7ePolicy34C8FAE0",
-      ],
-      "Properties": {
-        "BucketName": {
-          "Ref": "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
-        },
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
-            "Arn",
-          ],
-        },
-      },
-      "Type": "Custom::S3AutoDeleteObjects",
-      "UpdateReplacePolicy": "Delete",
-    },
-    "FilePublisherd9b7c06da8394be781b74510191a4d7ePolicy34C8FAE0": {
-      "Properties": {
-        "Bucket": {
-          "Ref": "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
-        },
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "s3:PutBucketPolicy",
-                "s3:GetBucket*",
-                "s3:List*",
-                "s3:DeleteObject*",
-              ],
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::GetAtt": [
-                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-                    "Arn",
-                  ],
-                },
-              },
-              "Resource": [
-                {
-                  "Fn::GetAtt": [
-                    "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
-                    "Arn",
-                  ],
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      {
-                        "Fn::GetAtt": [
-                          "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
-                          "Arn",
-                        ],
-                      },
-                      "/*",
-                    ],
-                  ],
-                },
-              ],
-            },
-            {
-              "Action": "s3:GetObject",
-              "Effect": "Allow",
-              "Principal": {
-                "CanonicalUser": {
-                  "Fn::GetAtt": [
-                    "FilePublisherOAI87FC8EA5",
-                    "S3CanonicalUserId",
-                  ],
-                },
-              },
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::GetAtt": [
-                        "FilePublisherd9b7c06da8394be781b74510191a4d7e725DF5D2",
-                        "Arn",
-                      ],
-                    },
-                    "/*",
-                  ],
-                ],
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-      },
-      "Type": "AWS::S3::BucketPolicy",
     },
     "LiveChannelFromMp4MediaLiveCfnChannelChannel2738FC17": {
       "Properties": {
@@ -1873,7 +1873,7 @@ exports[`Snapshot 1`] = `
         },
         "InputAttachments": [
           {
-            "InputAttachmentName": "eb333200-f3b5-47c7-aa65-7446b66d4589",
+            "InputAttachmentName": "5d528a02-222a-496d-ac8d-2b4ec5e5407a",
             "InputId": {
               "Ref": "LiveChannelFromMp4MediaLiveCfnInput0330A3853",
             },
@@ -1882,7 +1882,7 @@ exports[`Snapshot 1`] = `
             },
           },
         ],
-        "Name": "a9b8a5ca-11de-4ac9-a414-b6383841e477-Channel",
+        "Name": "825f627d-ddb7-40c9-b28b-f54c6a534fa6-Channel",
         "RoleArn": {
           "Fn::GetAtt": [
             "LiveChannelFromMp4MediaLiveIamRoleChannel570F95D7",
@@ -1894,7 +1894,7 @@ exports[`Snapshot 1`] = `
     },
     "LiveChannelFromMp4MediaLiveCfnInput0330A3853": {
       "Properties": {
-        "Name": "eb333200-f3b5-47c7-aa65-7446b66d4589",
+        "Name": "5d528a02-222a-496d-ac8d-2b4ec5e5407a",
         "Sources": [
           {
             "Url": {
@@ -1958,7 +1958,7 @@ exports[`Snapshot 1`] = `
     "LiveChannelFromMp4MediaPackageV1MediaPackageV1Channel8413A6B2": {
       "Properties": {
         "Description": "MediaPackage channel for testing",
-        "Id": "2627e879-9573-44bc-86fb-e6173b75b95a",
+        "Id": "9cf6bb6c-b72e-4aa0-bf42-01735f1a9da7",
       },
       "Type": "AWS::MediaPackage::Channel",
     },
@@ -1988,7 +1988,7 @@ exports[`Snapshot 1`] = `
           "SegmentDurationSeconds": 6,
         },
         "Description": "MediaPackage CMAF endpoint for testing",
-        "Id": "7956a949-9b4d-4359-b88e-93003d4acca0",
+        "Id": "a5edee06-ca1e-441a-b4e7-3418b3292bab",
         "StartoverWindowSeconds": 300,
       },
       "Type": "AWS::MediaPackage::OriginEndpoint",
@@ -2015,7 +2015,7 @@ exports[`Snapshot 1`] = `
           "SegmentDurationSeconds": 6,
         },
         "Description": "MediaPackage DASH endpoint for testing",
-        "Id": "d3e666bd-7367-4fa1-809b-97b60c95101e",
+        "Id": "2f8854c4-6d2c-411e-b8d8-044225536fbd",
         "StartoverWindowSeconds": 300,
       },
       "Type": "AWS::MediaPackage::OriginEndpoint",
@@ -2042,7 +2042,7 @@ exports[`Snapshot 1`] = `
           "SegmentDurationSeconds": 6,
           "UseAudioRenditionGroup": false,
         },
-        "Id": "8e27391e-43b0-4a6f-ac25-d843b0a4c9b4",
+        "Id": "86e45010-696a-4b42-b281-8c04f1e1da13",
         "StartoverWindowSeconds": 300,
       },
       "Type": "AWS::MediaPackage::OriginEndpoint",
@@ -2053,7 +2053,7 @@ exports[`Snapshot 1`] = `
           "Ref": "LiveChannelFromMp4MediaPackageV1MediaPackageV1Channel8413A6B2",
         },
         "Description": "MediaPackage MSS endpoint for testing",
-        "Id": "1f0bd709-2c0d-4d76-bd26-bcadb7a184af",
+        "Id": "33afe8ff-5cd1-43ff-a12d-0519a9cecbaa",
         "MssPackage": {
           "ManifestWindowSeconds": 60,
           "SegmentDurationSeconds": 6,
@@ -2076,7 +2076,7 @@ exports[`Snapshot 1`] = `
               {
                 "Ref": "LiveChannelFromMp4MediaLiveCfnChannelChannel2738FC17",
               },
-              ""},"physicalResourceId":{"id":"6aab6ce8-ea9a-4a26-b6d1-8d37139a9757"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
+              ""},"physicalResourceId":{"id":"b6925af2-0261-4aee-bb49-69452fb8162c"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
             ],
           ],
         },
@@ -2088,7 +2088,7 @@ exports[`Snapshot 1`] = `
               {
                 "Ref": "LiveChannelFromMp4MediaLiveCfnChannelChannel2738FC17",
               },
-              ""},"physicalResourceId":{"id":"3e33dd21-065c-4f62-9f7a-b9a210ba6887"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
+              ""},"physicalResourceId":{"id":"1c63b8a8-cbda-442a-86e7-04fa45df2497"},"ignoreErrorCodesMatching":"*","outputPaths":["Id","Arn"]}",
             ],
           ],
         },
@@ -2243,7 +2243,7 @@ exports[`Snapshot 1`] = `
           ],
         },
         "LivePreRollConfiguration": {},
-        "Name": "34e1518d-0471-4299-ab45-5147dc0dcdc8",
+        "Name": "6b866b32-228a-423f-9894-8c138cffc93e",
         "SlateAdUrl": {
           "Fn::Join": [
             "",
